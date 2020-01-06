@@ -1,0 +1,26 @@
+/* @font-face kit by Fonts2u (https://fonts2u.com) */ 
+@font-face {
+    font-family:"Final Frontier Old Style";
+    src: url("../font/FINALOLD.eot") format("eot"),
+    url("../font/FINALOLD.woff") format("woff"),
+    url("../font/FINALOLD.ttf") format("truetype"),
+    url("../font/FINALOLD.svg") format("svg");
+    font-weight:normal;
+    font-style:normal;
+}
+
+h1 {
+    font-family: "Final Frontier Old Style";
+    font-size: 100px;
+    text-align: center;
+    padding: 20px;
+}
+
+#main-info {
+    font-family: "Final Frontier Old Style";
+    font-size: 50px;
+    text-align: center;
+    margin-right: 200px;
+    margin-left: 200px;
+    padding: 20px;
+}
