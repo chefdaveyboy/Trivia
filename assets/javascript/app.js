@@ -1,10 +1,36 @@
 // Create base variables.
+var correctAnswers = 0;
+
+var incorrectAnswers = 0;
+
+var question = 0;
+
+
+
+
 
 // Create questions in an array.  
+var quizQuestions = [
     // For each question create an object.
         // Question: "string"
         // Answers: [Array]
         // Correct Answer: Array Index
+    {
+        question: "What is the U.S.S. Enterprise's registry number?",
+        options: ["NCC-1701", "NCC-1071", "NX-01", "NCC-1700"],
+        correctAnswer: 0
+    },
+    {
+        question: "In the episode Trouble with Tribbles, why did Scotty start a fight with the Klingons?",
+        options: ["They called humans Regulan Blood Worms!", "They called Captain Kirk a Denebian Slime Devil!", "They said the Enterprise should be hauled away as garbage!", "Trick Question. The Klingons started the fight!"],
+        correctAnswer: 2
+    },
+    {
+        question: 
+    }
+]
+    
+        
 
 // On click function that begins the quiz.
     //clicking the button also starts a 30 second timer.
