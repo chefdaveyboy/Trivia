@@ -9,6 +9,12 @@
     font-style:normal;
 }
 
+body {
+    background-image: url(../images/space-pic.jpg);
+    background-size: cover;
+    color: gold;
+}
+
 h1 {
     font-family: "Final Frontier Old Style";
     font-size: 100px;
@@ -23,4 +29,20 @@ h1 {
     margin-right: 200px;
     margin-left: 200px;
     padding: 20px;
+}
+
+#start-button {
+    background-color: gold;
+    color: black;
+    font-family: "Final Frontier Old Style";
+    font-size: 40px;
+    padding: 20px;
+    border: gold solid 1px;
+    text-align: center;
+    margin-top: 30px;
+}
+
+#start-button:hover {
+    background-color: transparent;
+    color: gold;
 }

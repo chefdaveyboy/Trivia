@@ -26,7 +26,9 @@ var quizQuestions = [
         correctAnswer: 2
     },
     {
-        question: 
+        question: "",
+        options: [""],
+        correctAnswer: ""
     }
 ]
     
