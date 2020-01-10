@@ -68,6 +68,9 @@ h1 {
     border: gold solid 1px;
     text-align: center;
     margin: 10px;
+}
 
-
+.button-guess:hover {
+    background-color: transparent;
+    color: gold;
 }
