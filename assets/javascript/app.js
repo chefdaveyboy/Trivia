@@ -5,12 +5,11 @@ var incorrectAnswers = 0;
 
 var question = 0;
 
-var count = 5;
+var count = 16;
 
 var counter;
 
 var userGuess;
-
 
 
 // Create questions in an array.  
@@ -36,7 +35,7 @@ var quizQuestions = [
     }
 ];
 
-var correctAnswer = quizQuestions[0].correctAnswer;
+
 // On click function that begins the quiz.
 $("#start-button").on("click", function(){
    //clicking the button hides instructions.
@@ -57,10 +56,11 @@ function timer() {
         $("#question-div").hide();
         $("#options-div").hide();
         $("#timer").hide();
+        var correctAnswer = quizQuestions[0].correctAnswer;
         var timeoutMsg = $("<div>");
         timeoutMsg.addClass("timeout-msg");
         $("#information").html(timeoutMsg);
-        $(".timeout-msg").text("Uh oh!  You ran out of time!  The correct answer is: " + correctAnswer);
+        $(".timeout-msg").text("Uh-oh! You ran out of time.. The correct answer is: " + correctAnswer);
         clearTimer();
         }
     //Have it show the time in the HTML    
@@ -86,7 +86,7 @@ function triviaGame() {
         //create a button for every option in the array.
         button.text(optionsArr[i]);
         //give buttons data- attribute
-        button.attr("data-guess", optionsArr[0]);
+        button.attr("data-guess", optionsArr[i]);
         //add class to buttons
         $(button).addClass("button-guess");
         //display the options as buttons in the html.
@@ -108,6 +108,7 @@ function triviaGame() {
             correctMsg.addClass("correct-msg");
             $("#information").html(correctMsg);
             $(".correct-msg").text("Congratulations! The correct answer is: " + correctAnswer);
+            clearTimer();
             console.log("Right Answer!");
             
         }
@@ -119,7 +120,8 @@ function triviaGame() {
             var wrongMsg = $("<div>");
             wrongMsg.addClass("wrong-msg");
             $("#information").html(wrongMsg);
-            $(".wrong-msg").text("Wrong Answer! The correct answer is: " + correctAnswer);
+            $(".wrong-msg").text("Wrong! The correct answer is: " + correctAnswer);
+            clearTimer();
             console.log("Wrong Answer!");
         }
     })

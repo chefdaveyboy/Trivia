@@ -46,3 +46,28 @@ h1 {
     background-color: transparent;
     color: gold;
 }
+
+#question-div, #options-div, #timer {
+    text-align: center;
+    font-size: 40px;
+    font-family: "Final Frontier Old Style";
+}
+
+.timeout-msg, .correct-msg, .wrong-msg {
+    text-align: center;
+    font-size: 40px;
+    font-family: "Final Frontier Old Style";
+}
+
+.button-guess {
+    background-color: gold;
+    color: black;
+    font-family: "Final Frontier Old Style";
+    font-size: 40px;
+    padding: 20px;
+    border: gold solid 1px;
+    text-align: center;
+    margin: 10px;
+
+
+}
