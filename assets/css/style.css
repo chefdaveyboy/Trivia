@@ -59,7 +59,7 @@ h1 {
     font-family: "Final Frontier Old Style";
 }
 
-.button-guess {
+.button-guess, .restart-button {
     background-color: gold;
     color: black;
     font-family: "Final Frontier Old Style";
@@ -70,7 +70,7 @@ h1 {
     margin: 10px;
 }
 
-.button-guess:hover {
+.button-guess:hover, .restart-button:hover {
     background-color: transparent;
     color: gold;
 }

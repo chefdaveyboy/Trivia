@@ -12,7 +12,8 @@ var quizQuestions = [
     {
         question: "What is the U.S.S. Enterprise's registry number?",
         options: ["NCC-1701", "NCC-1071", "NX-01", "NCC-1700"],
-        correctAnswer: "NCC-1701"
+        correctAnswer: "NCC-1701",
+        // image:
     },
     {
         question: "In the episode Trouble with Tribbles, why did Scotty start a fight with the Klingons?",
@@ -94,16 +95,22 @@ function timer() {
     if (count ===0) {
         timoutSound.play();
         incorrectAnswers++;
+        //hide the displaying divs
         $("#question-div").hide();
         $("#options-div").hide();
         $("#timer").hide();
+        //re-establish the correctA variable. 
         var correctA = quizQuestions[current].correctAnswer;
+        //creates timewoutMsg div
         var timeoutMsg = $("<div>");
         timeoutMsg.addClass("timeout-msg");
+        //displays the text
         $("#information").html(timeoutMsg);
         $(".timeout-msg").text("Uh-oh! You ran out of time.. The correct answer is: " + correctA);
         $(".timeout-msg").append("<br>" + "<br>" + "<img src='assets/images/time-out.webp' width='500px'>");
+        //clears the timer.
         clearTimer();
+        //after 3 seconds it starts a new question.
         setTimeout(newQuestion, 3000);
         
         };
@@ -140,41 +147,52 @@ function triviaGame() {
     };
     
     //create an on click event for the answer buttons.
-    // .off fixes the problem per question increase.
+    // .off fixes the problem of question/answer increase.
     $("#options-div").off("click").on("click", ".button-guess", function() {
-        
+        //refers to the button that was clicked
         var userGuess = $(this).data("guess");
+        //finds the correct answer of the [current] correct answer and sets it to var correctA
         var correctA = quizQuestions[current].correctAnswer;
         console.log(correctA);
         console.log(userGuess);
         if( userGuess === correctA) {
             rightSound.play();
+            //update the correct answer variable
             correctAnswers++;
+            //hide current info on display
             $("#question-div").hide();
             $("#options-div").hide();
             $("#timer").hide();
+            //create a div
             var correctMsg = $("<div>");
             correctMsg.addClass("correct-msg");
+            //display congratulations screen
             $("#information").html(correctMsg);
             $(".correct-msg").text("Congratulations! The correct answer is: " + correctA);
             $(".correct-msg").append("<br>" + "<br>" + "<img src='assets/images/Happy.webp' width='500px'>");
             clearTimer();
+            //show correct answer and if the player got it right. (show for 3 seconds).
             setTimeout(newQuestion, 3000);
             
             
         }
         else if(userGuess != correctA) {
             wrongSound.play();
+            //update the correct answer variable
             incorrectAnswers++;
+            //hide current info on display
             $("#question-div").hide();
             $("#options-div").hide();
             $("#timer").hide();
+            //create a div
             var wrongMsg = $("<div>");
             wrongMsg.addClass("wrong-msg");
+            //display congratulations screen
             $("#information").html(wrongMsg);
             $(".wrong-msg").text("Wrong! The correct answer is: " + correctA);
             $(".wrong-msg").append("<br>" + "<br>" + "<img src='assets/images/Wrong.webp' width='500px'>");
             clearTimer();
+            //show correct answer and if the player got it right. (show for 3 seconds).
             setTimeout(newQuestion, 3000);
             
             
@@ -184,7 +202,9 @@ function triviaGame() {
     
 };
 
-
+ 
+        
+//move on the the next question and reset the timer.        
 function newQuestion () {
     current++;
     
@@ -193,11 +213,17 @@ function newQuestion () {
         endSound.play();
         clearDiv();
         clearTimer();
+        //write the updated score to the HTML.
         $("#scoreboard").text("Correct Answers: " + correctAnswers);
         $("#scoreboard").append("<br>" + "Incorrect Answers: " + incorrectAnswers);
         $("#scoreboard").append("<br>" + "Thanks for playing! If you got less than 5 right, you definitely need to watch more Star Trek.  If you got more more than 5 right, you are a true Trekker!  Celebrate by grabbing a Romulan Ale and watching some Star Trek!");
         $("#scoreboard").append("<br>" + "<br>" + "Top 10 Star Trek Episodes: " + "<a href='https://www.youtube.com/watch?v=Fmn4FXXnIc4&list=PLN-VkgdpDxSK467YsydEHx1XZcuoQhTJX' target='_blank'>YOUTUBE</a>")
         $("#scoreboard").append("<br>" + "<br>" + "<img src='assets/images/ent-zoom.webp' width='500px'>");
+        // var restartButton = ("<button>");
+        // $(restartButton).addClass("restart-button");
+        // $(".restart-button").text("Restart");
+        // $("#scoreboard").append("<br>" + "<br>" + restartButton);
+        
     }
     else {
         count=21;
@@ -234,18 +260,12 @@ function clearDiv () {
 
 
 
-// Create the Game Function.
-    //On click events for the answer buttons.
-    //if correct answer is clicked +1 to the correct answer variable.
-    //if incorrect answer is clicked +1 to incorrect answer variable.
-    //if time expires +1 to incorrect answer variable.
-
-    //when a button is clicked or time expires:
-        //show correct answer and if the player got it right. (show for about 3-5 seconds).
-        //move on the the next question and reset the timer.
 
 
-//write the updated score to the HTML.
-//After running through the entire array.  The game is finished.
+   
+
+
+
+
 
 
