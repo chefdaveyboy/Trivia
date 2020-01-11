@@ -47,7 +47,7 @@ h1 {
     color: gold;
 }
 
-#question-div, #options-div, #timer {
+#question-div, #options-div, #timer, #scoreboard {
     text-align: center;
     font-size: 40px;
     font-family: "Final Frontier Old Style";

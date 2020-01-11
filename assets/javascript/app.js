@@ -1,15 +1,6 @@
 // Create base variables.
-var correctAnswers = 0;
 
-var incorrectAnswers = 0;
 
-var question = 0;
-
-var count = 16;
-
-var counter;
-
-var userGuess;
 
 
 // Create questions in an array.  
@@ -26,60 +17,91 @@ var quizQuestions = [
     {
         question: "In the episode Trouble with Tribbles, why did Scotty start a fight with the Klingons?",
         options: ["They called humans Regulan Blood Worms!", "They called Captain Kirk a Denebian Slime Devil!", "They said the Enterprise should be hauled away as garbage!", "Trick Question. The Klingons started the fight!"],
-        correctAnswer: 2
+        correctAnswer: "They said the Enterprise should be hauled away as garbage!"
+    },
+    
+    {
+        question: "What is Chief Engineer Mr. Scott(aka 'Scotty')'s First Name?",
+        options: ["Edward", "Marcus", "Geordi", "Montgomery"],
+        correctAnswer: "Montgomery"
     },
     {
-        question: "",
-        options: [""],
-        correctAnswer: ""
-    }
+        question: "What was Spock's blood type?",
+        options: ["X positive", "T negative", "AZ positive", "O negative"],
+        correctAnswer: "T negative"
+    },
+
 ];
 
 
+var correctAnswers = 0;
+
+var incorrectAnswers = 0;
+
+var count = 16;
+
+var counter;
+
+var userGuess;
+
+var current = 0;
+
+
+var backgroundSound = new Audio("assets/music/bridge-background.mp3");
+var rightSound = new Audio("assets/music/computer-sound-1.mp3");
+var wrongSound = new Audio("assets/music/computer-sound-3.mp3");
+var timeSound = new Audio("assets/music/time-left.wav");
 // On click function that begins the quiz.
 $("#start-button").on("click", function(){
    //clicking the button hides instructions.
     $("#main-info").hide();
-    //clicking the button also starts a 30 second timer and starts the game.
+    //Plays sound when button is clicked.
+    backgroundSound.play();
+    //clicking the button also starts a timer and starts the game.
     counter = setInterval(timer, 1000);
     //runs the game function.
     triviaGame();
     
 
-})
+});
 //Timer function
 function timer() {
     count--;
     $("#timer").html("Time Left: " + count);
+    if (count ===5) {
+        timeSound.play();
+    }
     if (count ===0) {
         incorrectAnswers++;
         $("#question-div").hide();
         $("#options-div").hide();
         $("#timer").hide();
-        var correctAnswer = quizQuestions[0].correctAnswer;
+        var correctA = quizQuestions[current].correctAnswer;
         var timeoutMsg = $("<div>");
         timeoutMsg.addClass("timeout-msg");
         $("#information").html(timeoutMsg);
-        $(".timeout-msg").text("Uh-oh! You ran out of time.. The correct answer is: " + correctAnswer);
+        $(".timeout-msg").text("Uh-oh! You ran out of time.. The correct answer is: " + correctA);
         clearTimer();
-        }
+        setTimeout(newQuestion, 5000);
+        
+        };
     //Have it show the time in the HTML    
     
-}
+};
 
 function clearTimer() {
     clearInterval(counter);
-}
+};
 
 // Create the Game Function.
 function triviaGame() {
     //shows the current question.
-    $("#question-div").text(quizQuestions[0].question);
-    question++;
-    //create a variable for the answer options.
-    var optionsArr = quizQuestions[0].options;
+    $("#question-div").text(quizQuestions[current].question);
     
-   
+    //create a variable for the answer options.
+    
+    var optionsArr = quizQuestions[current].options;
+    
     //Loop through the option array.
     for (i =0; i < optionsArr.length; i++) {
         var button = $("<button>");
@@ -91,15 +113,20 @@ function triviaGame() {
         $(button).addClass("button-guess");
         //display the options as buttons in the html.
         $("#options-div").append(button);
-       console.log(optionsArr[i]);
-    }
+        $("#options-div").show();
+        console.log(optionsArr[i]);
+    };
+    
     //create an on click event for the answer buttons.
-    $("#options-div").on("click", ".button-guess", function() {
+    // .off fixes the problem per question increase.
+    $("#options-div").off("click").on("click", ".button-guess", function() {
+        
         var userGuess = $(this).data("guess");
-        var correctAnswer = quizQuestions[0].correctAnswer;
-        console.log(correctAnswer);
+        var correctA = quizQuestions[current].correctAnswer;
+        console.log(correctA);
         console.log(userGuess);
-        if( userGuess === correctAnswer) {
+        if( userGuess === correctA) {
+            rightSound.play();
             correctAnswers++;
             $("#question-div").hide();
             $("#options-div").hide();
@@ -107,12 +134,14 @@ function triviaGame() {
             var correctMsg = $("<div>");
             correctMsg.addClass("correct-msg");
             $("#information").html(correctMsg);
-            $(".correct-msg").text("Congratulations! The correct answer is: " + correctAnswer);
+            $(".correct-msg").text("Congratulations! The correct answer is: " + correctA);
             clearTimer();
-            console.log("Right Answer!");
+            setTimeout(newQuestion, 5000);
+            
             
         }
-        else {
+        else if(userGuess != correctA) {
+            wrongSound.play();
             incorrectAnswers++;
             $("#question-div").hide();
             $("#options-div").hide();
@@ -120,16 +149,42 @@ function triviaGame() {
             var wrongMsg = $("<div>");
             wrongMsg.addClass("wrong-msg");
             $("#information").html(wrongMsg);
-            $(".wrong-msg").text("Wrong! The correct answer is: " + correctAnswer);
+            $(".wrong-msg").text("Wrong! The correct answer is: " + correctA);
             clearTimer();
-            console.log("Wrong Answer!");
-        }
-    })
-}
+            setTimeout(newQuestion, 5000);
+            
+            
+        };
+    });
+
+    
+};
+
 
 function newQuestion () {
-    $
-}
+    current++;
+    count=15;
+    clearDiv();
+    $("#timer").show();
+    $("#question-div").show();
+    $("#options-div").show();
+    counter=setInterval(timer, 1000);
+    triviaGame();
+    
+    console.log(current);
+};
+
+function clearDiv () {
+    $(".correct-msg").hide();
+    $(".wrong-msg").hide();
+    $(".timeout-msg").hide();
+    $("#options-div").each(function() {
+        $(this).text("");
+        });
+    
+};
+
+
 
 
         
