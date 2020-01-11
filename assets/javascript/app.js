@@ -30,7 +30,24 @@ var quizQuestions = [
         options: ["X positive", "T negative", "AZ positive", "O negative"],
         correctAnswer: "T negative"
     },
+    {
+        question: "In the episode 'Arena', Kirk is forced into combat with the Gorn.  He makes gunpowder using 3 elements he finds on the planet.  Which of these is NOT one of those elements?",
+        options: ["Dilithium", "Coal", "Potassium Nitrate", "Sulfur"],
+        correctAnswer: "Dilithium"
+    },
+    {
+        question: "What is Uhura's Job on the Enterprise?",
+        options: ["Chief Engineer", "Communications Officer", "Captain's Yeoman", "Security Officer"],
+        correctAnswer: "Communications Officer"
+    },
+    {
+        question: "The actress that played Nurse Chapel(Majel Barrett) was married to William Shatner in real life.",
+        options: ["True", "False"],
+        correctAnswer: "False",
+        
+    },
 
+    
 ];
 
 
@@ -38,7 +55,7 @@ var correctAnswers = 0;
 
 var incorrectAnswers = 0;
 
-var count = 16;
+var count = 21;
 
 var counter;
 
@@ -51,6 +68,8 @@ var backgroundSound = new Audio("assets/music/bridge-background.mp3");
 var rightSound = new Audio("assets/music/computer-sound-1.mp3");
 var wrongSound = new Audio("assets/music/computer-sound-3.mp3");
 var timeSound = new Audio("assets/music/time-left.wav");
+var timoutSound = new Audio("assets/music/dah-duh-duh.wav");
+var endSound = new Audio("assets/music/ClosingCredits.mp3");
 // On click function that begins the quiz.
 $("#start-button").on("click", function(){
    //clicking the button hides instructions.
@@ -72,6 +91,7 @@ function timer() {
         timeSound.play();
     }
     if (count ===0) {
+        timoutSound.play();
         incorrectAnswers++;
         $("#question-div").hide();
         $("#options-div").hide();
@@ -82,7 +102,7 @@ function timer() {
         $("#information").html(timeoutMsg);
         $(".timeout-msg").text("Uh-oh! You ran out of time.. The correct answer is: " + correctA);
         clearTimer();
-        setTimeout(newQuestion, 5000);
+        setTimeout(newQuestion, 3000);
         
         };
     //Have it show the time in the HTML    
@@ -136,7 +156,7 @@ function triviaGame() {
             $("#information").html(correctMsg);
             $(".correct-msg").text("Congratulations! The correct answer is: " + correctA);
             clearTimer();
-            setTimeout(newQuestion, 5000);
+            setTimeout(newQuestion, 3000);
             
             
         }
@@ -151,7 +171,7 @@ function triviaGame() {
             $("#information").html(wrongMsg);
             $(".wrong-msg").text("Wrong! The correct answer is: " + correctA);
             clearTimer();
-            setTimeout(newQuestion, 5000);
+            setTimeout(newQuestion, 3000);
             
             
         };
@@ -163,15 +183,31 @@ function triviaGame() {
 
 function newQuestion () {
     current++;
-    count=15;
-    clearDiv();
-    $("#timer").show();
-    $("#question-div").show();
-    $("#options-div").show();
-    counter=setInterval(timer, 1000);
-    triviaGame();
     
-    console.log(current);
+    if (current === quizQuestions.length) {
+        backgroundSound.pause();
+        endSound.play();
+        clearDiv();
+        clearTimer();
+        $("#scoreboard").text("Correct Answers: " + correctAnswers);
+        $("#scoreboard").append("<br>" + "Incorrect Answers: " + incorrectAnswers);
+        $("#scoreboard").append("<br>" + "Thanks for playing! If you got less than 5 right, you definitely need to watch more Star Trek.  If you got more more than 5 right, you are a true Trekker!  Celebrate by grabbing a Romulan Ale and watching some Star Trek!");
+        $("#scoreboard").append("<br>" + "<br>" + "Top 10 Star Trek Episodes: " + "<a href='https://www.youtube.com/watch?v=Fmn4FXXnIc4&list=PLN-VkgdpDxSK467YsydEHx1XZcuoQhTJX' target='_blank'>YOUTUBE</a>")
+    }
+    else {
+        count=21;
+        clearDiv();
+        $("#timer").show();
+        $("#question-div").show();
+        $("#options-div").show();    
+        counter=setInterval(timer, 1000);
+        triviaGame();
+    }
+    
+
+
+    
+    
 };
 
 function clearDiv () {

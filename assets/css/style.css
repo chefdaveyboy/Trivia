@@ -22,7 +22,7 @@ h1 {
     padding: 20px;
 }
 
-#main-info {
+#main-info, #scoreboard, #question-div {
     font-family: "Final Frontier Old Style";
     font-size: 50px;
     text-align: center;
@@ -71,6 +71,24 @@ h1 {
 }
 
 .button-guess:hover {
+    background-color: transparent;
+    color: gold;
+}
+
+a:link, a:visited {
+    text-decoration: none;
+    background-color: gold;
+    color: black;
+    font-family: "Final Frontier Old Style";
+    font-size: 40px;
+    padding: 20px;
+    border: gold solid 1px;
+    text-align: center;
+    margin-top: 30px;
+
+}
+
+a:hover {
     background-color: transparent;
     color: gold;
 }
