@@ -1,4 +1,4 @@
-// Create base variables.
+
 
 
 
@@ -50,7 +50,7 @@ var quizQuestions = [
     
 ];
 
-
+// Create base variables.
 var correctAnswers = 0;
 
 var incorrectAnswers = 0;
@@ -63,13 +63,14 @@ var userGuess;
 
 var current = 0;
 
-
+//Sound effects and music variables.
 var backgroundSound = new Audio("assets/music/bridge-background.mp3");
 var rightSound = new Audio("assets/music/computer-sound-1.mp3");
 var wrongSound = new Audio("assets/music/computer-sound-3.mp3");
 var timeSound = new Audio("assets/music/time-left.wav");
 var timoutSound = new Audio("assets/music/dah-duh-duh.wav");
 var endSound = new Audio("assets/music/ClosingCredits.mp3");
+
 // On click function that begins the quiz.
 $("#start-button").on("click", function(){
    //clicking the button hides instructions.
@@ -101,6 +102,7 @@ function timer() {
         timeoutMsg.addClass("timeout-msg");
         $("#information").html(timeoutMsg);
         $(".timeout-msg").text("Uh-oh! You ran out of time.. The correct answer is: " + correctA);
+        $(".timeout-msg").append("<br>" + "<br>" + "<img src='assets/images/time-out.webp' width='500px'>");
         clearTimer();
         setTimeout(newQuestion, 3000);
         
@@ -155,6 +157,7 @@ function triviaGame() {
             correctMsg.addClass("correct-msg");
             $("#information").html(correctMsg);
             $(".correct-msg").text("Congratulations! The correct answer is: " + correctA);
+            $(".correct-msg").append("<br>" + "<br>" + "<img src='assets/images/Happy.webp' width='500px'>");
             clearTimer();
             setTimeout(newQuestion, 3000);
             
@@ -170,6 +173,7 @@ function triviaGame() {
             wrongMsg.addClass("wrong-msg");
             $("#information").html(wrongMsg);
             $(".wrong-msg").text("Wrong! The correct answer is: " + correctA);
+            $(".wrong-msg").append("<br>" + "<br>" + "<img src='assets/images/Wrong.webp' width='500px'>");
             clearTimer();
             setTimeout(newQuestion, 3000);
             
@@ -193,6 +197,7 @@ function newQuestion () {
         $("#scoreboard").append("<br>" + "Incorrect Answers: " + incorrectAnswers);
         $("#scoreboard").append("<br>" + "Thanks for playing! If you got less than 5 right, you definitely need to watch more Star Trek.  If you got more more than 5 right, you are a true Trekker!  Celebrate by grabbing a Romulan Ale and watching some Star Trek!");
         $("#scoreboard").append("<br>" + "<br>" + "Top 10 Star Trek Episodes: " + "<a href='https://www.youtube.com/watch?v=Fmn4FXXnIc4&list=PLN-VkgdpDxSK467YsydEHx1XZcuoQhTJX' target='_blank'>YOUTUBE</a>")
+        $("#scoreboard").append("<br>" + "<br>" + "<img src='assets/images/ent-zoom.webp' width='500px'>");
     }
     else {
         count=21;
