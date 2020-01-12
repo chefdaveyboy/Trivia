@@ -16,6 +16,12 @@ var quizQuestions = [
         // image:
     },
     {
+        question: "In the episode City on the Edge of Forever, Kirk, Spock, and McCoy meet a Social Worker from the 1930s.  In order to fix history and restore the timeline Edith Keeler must die.",
+        options: ["True", "False"],
+        correctAnswer: "True",
+        
+    },
+    {
         question: "In the episode Trouble with Tribbles, why did Scotty start a fight with the Klingons?",
         options: ["They called humans Regulan Blood Worms!", "They called Captain Kirk a Denebian Slime Devil!", "They said the Enterprise should be hauled away as garbage!", "Trick Question. The Klingons started the fight!"],
         correctAnswer: "They said the Enterprise should be hauled away as garbage!"
@@ -27,9 +33,19 @@ var quizQuestions = [
         correctAnswer: "Montgomery"
     },
     {
+        question: "In what century did Star Trek take place?",
+        options: ["23rd Century", "24th Century", "21st Century", "28th Century"],
+        correctAnswer: "23rd Century"
+    },
+    {
         question: "What was Spock's blood type?",
         options: ["X positive", "T negative", "AZ positive", "O negative"],
         correctAnswer: "T negative"
+    },
+    {
+        question: "The Vulcan Salute, or the 'Live Long and Prosper' hand gesture was borrowed from what religion?",
+        options: ["Satanism", "Buddhism", "Christianity", "Judaism"],
+        correctAnswer: "Judaism"
     },
     {
         question: "In the episode 'Arena', Kirk is forced into combat with the Gorn.  He makes gunpowder using 3 elements he finds on the planet.  Which of these is NOT one of those elements?",
